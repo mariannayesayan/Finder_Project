@@ -40,32 +40,36 @@ class Finder:
         user = self.askfindinfo()
         temp = self.head
         while temp is not None:
+            list = ["match by:"]
             if temp.firstname == user.firstname:
-                print "match by firstname"
-                self.displayuserinfo(temp)
-            elif temp.lastname == user.lastname:
-                print "match by lastname"
-                self.displayuserinfo(temp)
-            elif temp.degree == user.degree:
-                print "match by degree"
-                self.displayuserinfo(temp)
-            elif temp.jobtitle == user.jobtitle:
-                print "match by jobtitle"
-                self.displayuserinfo(temp)
-            elif temp.organization == user.organization:
-                print "match by organization"
+                list.append("firstname")
+            if temp.lastname == user.lastname:
+                list.append("lastname")
+            if temp.degree == user.degree:
+                list.append("degree")
+            if temp.jobtitle == user.jobtitle:
+                list.append("jobtitle")
+            if temp.organization == user.organization:
+                list.append("organization")
+            if temp.firstname == user.firstname or temp.lastname == user.lastname\
+                or temp.degree == user.degree or temp.jobtitle == user.jobtitle or temp.organization == user.organization:
+                for i in range(len(list)):
+                    print list[i],
+                print ""
                 self.displayuserinfo(temp)
             temp = temp.next
 
 def main():
     finder = Finder()
-    u1 = User("1", "2", "3", "4", "5")
-    u2 = User("6", "7", "8", "9", "10")
-    u3 = User("2", "6", "2", "5", "5")
-    u4 = User("8", "2", "5", "7", "5")
+    u1 = User("Artak", "Melkonyan", "PHD", "Lecturer", "University")
+    u2 = User("Armen", "Hakobyan", "Masters", "Lecturer", "University")
+    u3 = User("Lusine", "Melkonyan", "MBA", "Lecturer", "University")
+    u4 = User("Artak", "Levonyan", "PHD", "Lecturer", "University")
     finder.append(u1)
     finder.append(u2)
     finder.append(u3)
     finder.append(u4)
     finder.findmatches()
 main()
+
+
